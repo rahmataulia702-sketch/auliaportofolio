@@ -1,34 +1,246 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profil Mahasiswa</title>
+
   <style>
-    body {font-family: Arial, sans-serif; background:#eef2f7; margin:0; color:#1e293b}
-    header {background:#164e63; color:white; text-align:center; padding:28px}
-    main {max-width:760px; margin:24px auto; background:white; padding:24px; border-radius:12px}
-    h2 {color:#0e7490}
-    footer {text-align:center; padding:16px}
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #e0f2fe, #eef2f7, #cffafe);
+      margin: 0;
+      color: #1e293b;
+    }
+
+    header {
+      background: linear-gradient(135deg, #164e63, #0891b2);
+      color: white;
+      text-align: center;
+      padding: 35px 20px;
+      box-shadow: 0 5px 15px rgba(22, 78, 99, 0.2);
+    }
+
+    header h1 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 30px;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      margin-bottom: 0;
+      color: #cffafe;
+    }
+
+    main {
+      max-width: 760px;
+      margin: 30px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1);
+      border: 1px solid #dbeafe;
+    }
+
+    .foto-profil {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .foto-profil img {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid #06b6d4;
+      box-shadow: 0 5px 20px rgba(8, 145, 178, 0.25);
+      transition: transform 0.3s;
+    }
+
+    .foto-profil img:hover {
+      transform: scale(1.05);
+    }
+
+    .tombol-foto {
+      display: inline-block;
+      background: #0891b2;
+      color: white;
+      padding: 12px 20px;
+      margin: 10px 5px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .tombol-foto:hover {
+      background: #0e7490;
+    }
+
+    #inputFoto {
+      display: none;
+    }
+
+    #pesan {
+      color: #0e7490;
+      font-size: 14px;
+    }
+
+    h2 {
+      color: #0e7490;
+      border-left: 5px solid #06b6d4;
+      padding-left: 12px;
+      margin-top: 28px;
+    }
+
+    p {
+      line-height: 1.8;
+    }
+
+    ul {
+      background: #f0f9ff;
+      padding: 20px 20px 20px 40px;
+      border-radius: 12px;
+      border: 1px solid #bae6fd;
+      line-height: 2;
+    }
+
+    li::marker {
+      color: #0891b2;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #164e63;
+      color: white;
+      font-size: 14px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 28px 15px;
+      }
+
+      header h1 {
+        font-size: 24px;
+      }
+
+      main {
+        margin: 20px 12px;
+        padding: 20px;
+      }
+
+      .foto-profil img {
+        width: 135px;
+        height: 135px;
+      }
+    }
   </style>
 </head>
+
 <body>
   <header>
     <h1>Website Profil Mahasiswa</h1>
     <p>Praktik Administrasi Website</p>
   </header>
+
   <main>
+    <div class="foto-profil">
+      <!-- Foto awal -->
+      <img
+        id="previewFoto"
+        src="https://placehold.co/300x300/e0f2fe/0891b2?text=Foto+Mahasiswa"
+        alt="Foto Profil Mahasiswa"
+      >
+
+      <br>
+
+      <!-- Input foto dari galeri atau komputer -->
+      <input
+        type="file"
+        id="inputFoto"
+        accept="image/*"
+      >
+
+      <label for="inputFoto" class="tombol-foto">
+        📷 Pilih Foto
+      </label>
+
+      <p id="pesan">Pilih foto dari galeri HP atau komputer.</p>
+
+      <p><strong>Aulia Rahmat</strong></p>
+      <p>Mahasiswa Program Studi Informatika</p>
+    </div>
+
     <h2>Profil Singkat</h2>
-    <p>Halo, saya [Nama Mahasiswa]. Saya sedang belajar memublikasikan website.</p>
+    <p>
+      Halo, saya Aulia Rahmat.
+      Saya sedang belajar memublikasikan website.
+    </p>
+
     <h2>Informasi</h2>
     <ul>
       <li>Program Studi: Informatika</li>
       <li>Mata Kuliah: Administrasi Website</li>
       <li>Topik: Hosting dan publikasi website</li>
     </ul>
+
     <h2>Tujuan</h2>
-    <p>Halaman ini dibuat sebagai latihan mengunggah HTML ke layanan hosting.</p>
+    <p>
+      Halaman ini dibuat sebagai latihan mengunggah HTML
+      ke layanan hosting.
+    </p>
   </main>
-  <footer>Website latihan mahasiswa — 2026</footer>
+
+  <footer>
+    Website latihan mahasiswa — 2026
+  </footer>
+
+  <script>
+    const inputFoto = document.getElementById("inputFoto");
+    const previewFoto = document.getElementById("previewFoto");
+    const pesan = document.getElementById("pesan");
+
+    let urlFotoSebelumnya = null;
+
+    inputFoto.addEventListener("change", function () {
+      const file = this.files[0];
+
+      if (!file) return;
+
+      // Pastikan file yang dipilih berupa gambar
+      if (!file.type.startsWith("image/")) {
+        pesan.textContent = "Silakan pilih file gambar.";
+        this.value = "";
+        return;
+      }
+
+      // Batasi ukuran foto maksimal 10 MB
+      if (file.size > 10 * 1024 * 1024) {
+        pesan.textContent = "Ukuran foto maksimal 10 MB.";
+        this.value = "";
+        return;
+      }
+
+      // Hapus URL foto sebelumnya agar tidak membebani memori
+      if (urlFotoSebelumnya) {
+        URL.revokeObjectURL(urlFotoSebelumnya);
+      }
+
+      // Tampilkan foto yang baru dipilih
+      urlFotoSebelumnya = URL.createObjectURL(file);
+      previewFoto.src = urlFotoSebelumnya;
+
+      pesan.textContent = "Foto berhasil dipilih!";
+
+      // Izinkan memilih foto yang sama kembali
+      this.value = "";
+    });
+  </script>
 </body>
 </html>

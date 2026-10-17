@@ -151,16 +151,17 @@
 
   <main>
     <div class="foto-profil">
-      <!-- Foto awal -->
+
+      <!-- Foto profil -->
       <img
         id="previewFoto"
         src="https://placehold.co/300x300/e0f2fe/0891b2?text=Foto+Mahasiswa"
-        alt="Foto Profil Mahasiswa"
+        alt="Foto Profil Aulia Rahmat"
       >
 
       <br>
 
-      <!-- Input foto dari galeri atau komputer -->
+      <!-- Pilih foto dari galeri atau komputer -->
       <input
         type="file"
         id="inputFoto"
@@ -171,7 +172,9 @@
         📷 Pilih Foto
       </label>
 
-      <p id="pesan">Pilih foto dari galeri HP atau komputer.</p>
+      <p id="pesan">
+        Pilih foto dari galeri HP atau komputer.
+      </p>
 
       <p><strong>Aulia Rahmat</strong></p>
       <p>Mahasiswa Program Studi Informatika</p>
@@ -206,39 +209,62 @@
     const previewFoto = document.getElementById("previewFoto");
     const pesan = document.getElementById("pesan");
 
-    let urlFotoSebelumnya = null;
+    // Tampilkan foto yang sudah tersimpan saat halaman dibuka
+    try {
+      const fotoTersimpan = localStorage.getItem("fotoProfilAulia");
 
+      if (fotoTersimpan) {
+        previewFoto.src = fotoTersimpan;
+        pesan.textContent = "Foto profil tersimpan otomatis.";
+      }
+    } catch (error) {
+      pesan.textContent = "Penyimpanan foto tidak tersedia di browser.";
+    }
+
+    // Pilih dan simpan foto baru
     inputFoto.addEventListener("change", function () {
       const file = this.files[0];
 
       if (!file) return;
 
-      // Pastikan file yang dipilih berupa gambar
       if (!file.type.startsWith("image/")) {
-        pesan.textContent = "Silakan pilih file gambar.";
+        pesan.textContent = "Silakan pilih file gambar yang valid.";
         this.value = "";
         return;
       }
 
-      // Batasi ukuran foto maksimal 10 MB
-      if (file.size > 10 * 1024 * 1024) {
-        pesan.textContent = "Ukuran foto maksimal 10 MB.";
+      // Maksimal 2 MB agar penyimpanan browser tidak cepat penuh
+      if (file.size > 2 * 1024 * 1024) {
+        pesan.textContent =
+          "Ukuran foto terlalu besar. Maksimal 2 MB.";
         this.value = "";
         return;
       }
 
-      // Hapus URL foto sebelumnya agar tidak membebani memori
-      if (urlFotoSebelumnya) {
-        URL.revokeObjectURL(urlFotoSebelumnya);
-      }
+      const reader = new FileReader();
 
-      // Tampilkan foto yang baru dipilih
-      urlFotoSebelumnya = URL.createObjectURL(file);
-      previewFoto.src = urlFotoSebelumnya;
+      reader.onload = function (event) {
+        const dataFoto = event.target.result;
 
-      pesan.textContent = "Foto berhasil dipilih!";
+        try {
+          // Simpan foto ke penyimpanan browser
+          localStorage.setItem("fotoProfilAulia", dataFoto);
 
-      // Izinkan memilih foto yang sama kembali
+          // Tampilkan foto setelah berhasil disimpan
+          previewFoto.src = dataFoto;
+          pesan.textContent =
+            "Foto berhasil disimpan! Foto akan tetap ada saat dibuka kembali.";
+        } catch (error) {
+          pesan.textContent =
+            "Foto gagal disimpan. Coba gunakan gambar yang lebih kecil.";
+        }
+      };
+
+      reader.onerror = function () {
+        pesan.textContent = "Foto gagal dibaca. Silakan coba lagi.";
+      };
+
+      reader.readAsDataURL(file);
       this.value = "";
     });
   </script>

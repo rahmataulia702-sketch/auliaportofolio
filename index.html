@@ -2,271 +2,777 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profil Mahasiswa</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Profil Mahasiswa - Aulia Rahmat</title>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #e0f2fe, #eef2f7, #cffafe);
-      margin: 0;
-      color: #1e293b;
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: linear-gradient(-45deg, #00b4db, #0083b0, #6dd5ed, #2193b0);
+    background-size: 400% 400%;
+    animation: bg 12s ease infinite;
+    color: white;
+    overflow-x: hidden;
+    transition: background .4s, color .4s;
+}
+
+@keyframes bg {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+html {
+    scroll-padding-top: 90px;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding: 18px;
+    background: rgba(255,255,255,.15);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 5px 20px rgba(0,0,0,.2);
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: #00ffff;
+    transform: translateY(-2px);
+}
+
+header {
+    text-align: center;
+    padding: 50px 20px;
+    background: rgba(255,255,255,.15);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 5px 20px rgba(0,0,0,.2);
+}
+
+header h1 {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 17px;
+}
+
+#jam {
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #00ffff;
+}
+
+main {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 35px;
+    background: rgba(255,255,255,.15);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    box-shadow: 0 10px 40px rgba(0,0,0,.25);
+    animation: muncul 1s;
+}
+
+@keyframes muncul {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.foto-profil {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.foto-profil img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid white;
+    box-shadow: 0 0 35px cyan;
+    transition: .4s;
+}
+
+.foto-profil img:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 50px cyan;
+}
+
+#inputFoto {
+    display: none;
+}
+
+.tombol {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 28px;
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    border: none;
+    border-radius: 30px;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.tombol:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,.3);
+}
+
+#pesan {
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+h2 {
+    margin-top: 35px;
+    margin-bottom: 15px;
+    padding-left: 12px;
+    border-left: 5px solid cyan;
+    font-size: 22px;
+}
+
+.card {
+    background: rgba(255,255,255,.12);
+    padding: 20px;
+    border-radius: 18px;
+    margin-top: 15px;
+    transition: .4s;
+}
+
+.card:hover {
+    background: rgba(255,255,255,.20);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-wrap: anywhere;
+}
+
+table td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(255,255,255,.25);
+    text-align: left;
+    vertical-align: top;
+}
+
+ul {
+    padding-left: 25px;
+}
+
+li {
+    margin: 10px 0;
+}
+
+.progress {
+    width: 100%;
+    height: 12px;
+    background: rgba(255,255,255,.35);
+    border-radius: 30px;
+    margin: 8px 0 20px;
+    overflow: hidden;
+}
+
+.progress span {
+    display: block;
+    height: 100%;
+    border-radius: 30px;
+    background: linear-gradient(90deg, #00f260, #0575e6);
+}
+
+.galeri {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+}
+
+.galeri img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: .4s;
+}
+
+.galeri img:hover {
+    transform: scale(1.04);
+    box-shadow: 0 10px 30px rgba(0,0,0,.3);
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    margin-top: 40px;
+    background: rgba(255,255,255,.15);
+}
+
+#darkMode {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    background: white;
+    color: #333;
+    z-index: 2000;
+    box-shadow: 0 3px 12px rgba(0,0,0,.2);
+}
+
+body.gelap {
+    background: #101820;
+    animation: none;
+    color: #f1f5f9;
+}
+
+.gelap nav,
+.gelap header,
+.gelap main,
+.gelap footer {
+    background: rgba(0,0,0,.4);
+}
+
+.gelap .card {
+    background: rgba(255,255,255,.07);
+}
+
+.gelap .card:hover {
+    background: rgba(255,255,255,.12);
+}
+
+@media (max-width: 768px) {
+    nav {
+        gap: 12px;
+        padding: 65px 12px 15px;
     }
 
-    header {
-      background: linear-gradient(135deg, #164e63, #0891b2);
-      color: white;
-      text-align: center;
-      padding: 35px 20px;
-      box-shadow: 0 5px 15px rgba(22, 78, 99, 0.2);
+    nav a {
+        font-size: 13px;
     }
 
     header h1 {
-      margin-top: 0;
-      margin-bottom: 10px;
-      font-size: 30px;
-      letter-spacing: 1px;
+        font-size: 27px;
     }
 
     header p {
-      margin-bottom: 0;
-      color: #cffafe;
+        font-size: 14px;
     }
 
     main {
-      max-width: 760px;
-      margin: 30px auto;
-      background: white;
-      padding: 30px;
-      border-radius: 18px;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1);
-      border: 1px solid #dbeafe;
-    }
-
-    .foto-profil {
-      text-align: center;
-      margin-bottom: 25px;
+        width: 94%;
+        padding: 20px;
+        margin: 25px auto;
     }
 
     .foto-profil img {
-      width: 160px;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 5px solid #06b6d4;
-      box-shadow: 0 5px 20px rgba(8, 145, 178, 0.25);
-      transition: transform 0.3s;
-    }
-
-    .foto-profil img:hover {
-      transform: scale(1.05);
-    }
-
-    .tombol-foto {
-      display: inline-block;
-      background: #0891b2;
-      color: white;
-      padding: 12px 20px;
-      margin: 10px 5px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    .tombol-foto:hover {
-      background: #0e7490;
-    }
-
-    #inputFoto {
-      display: none;
-    }
-
-    #pesan {
-      color: #0e7490;
-      font-size: 14px;
+        width: 145px;
+        height: 145px;
     }
 
     h2 {
-      color: #0e7490;
-      border-left: 5px solid #06b6d4;
-      padding-left: 12px;
-      margin-top: 28px;
+        font-size: 19px;
     }
 
-    p {
-      line-height: 1.8;
+    table td {
+        padding: 9px 6px;
+        font-size: 13px;
     }
 
-    ul {
-      background: #f0f9ff;
-      padding: 20px 20px 20px 40px;
-      border-radius: 12px;
-      border: 1px solid #bae6fd;
-      line-height: 2;
+    #darkMode {
+        top: 10px;
+        right: 10px;
     }
-
-    li::marker {
-      color: #0891b2;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #164e63;
-      color: white;
-      font-size: 14px;
-      margin-top: 40px;
-    }
-
-    @media (max-width: 600px) {
-      header {
-        padding: 28px 15px;
-      }
-
-      header h1 {
-        font-size: 24px;
-      }
-
-      main {
-        margin: 20px 12px;
-        padding: 20px;
-      }
-
-      .foto-profil img {
-        width: 135px;
-        height: 135px;
-      }
-    }
-  </style>
+}
+</style>
 </head>
-
 <body>
-  <header>
-    <h1>Website Profil Mahasiswa</h1>
+
+<button id="darkMode" type="button">🌙 Dark Mode</button>
+
+<nav>
+    <a href="#profil">Profil</a>
+    <a href="#biodata">Biodata</a>
+    <a href="#tentang">Tentang Saya</a>
+    <a href="#skill">Skill</a>
+    <a href="#prestasi">Prestasi</a>
+    <a href="#kontak">Kontak</a>
+    <a href="#galeri">Galeri</a>
+</nav>
+
+<header>
+    <h1>🎓 Website Profil Mahasiswa</h1>
     <p>Praktik Administrasi Website</p>
-  </header>
+</header>
 
-  <main>
-    <div class="foto-profil">
+<main>
 
-      <!-- Foto profil -->
-      <img
-        id="previewFoto"
-        src="https://placehold.co/300x300/e0f2fe/0891b2?text=Foto+Mahasiswa"
-        alt="Foto Profil Aulia Rahmat"
-      >
+    <!-- PROFIL DAN UPLOAD FOTO -->
+    <section class="foto-profil" id="profil">
 
-      <br>
+        <img
+            id="previewFoto"
+            src="https://placehold.co/300x300/e0f2fe/0891b2?text=Foto+Mahasiswa"
+            alt="Foto Profil Mahasiswa">
 
-      <!-- Pilih foto dari galeri atau komputer -->
-      <input
-        type="file"
-        id="inputFoto"
-        accept="image/*"
-      >
+        <br>
 
-      <label for="inputFoto" class="tombol-foto">
-        📷 Pilih Foto
-      </label>
+        <input
+            type="file"
+            id="inputFoto"
+            accept="image/*">
 
-      <p id="pesan">
-        Pilih foto dari galeri HP atau komputer.
-      </p>
+        <label for="inputFoto" class="tombol">
+            📷 Pilih Foto
+        </label>
 
-      <p><strong>Aulia Rahmat</strong></p>
-      <p>Mahasiswa Program Studi Informatika</p>
+        <button type="button" id="hapusFoto" class="tombol">
+            🗑️ Hapus Foto
+        </button>
+
+        <p id="pesan" role="status" aria-live="polite">
+            Silakan pilih foto profil Anda.
+        </p>
+
+        <h2>Aulia Rahmat</h2>
+        <p>Mahasiswa Program Studi Informatika</p>
+
+    </section>
+
+    <!-- BIODATA -->
+    <h2 id="biodata">📋 Biodata Mahasiswa</h2>
+
+    <div class="card">
+        <table>
+            <tr>
+                <td><strong>Nama</strong></td>
+                <td>Aulia Rahmat</td>
+            </tr>
+            <tr>
+                <td><strong>NIM</strong></td>
+                <td>2404411019</td>
+            </tr>
+            <tr>
+                <td><strong>Program Studi</strong></td>
+                <td>Informatika</td>
+            </tr>
+            <tr>
+                <td><strong>Fakultas</strong></td>
+                <td>Teknik Komputer</td>
+            </tr>
+            <tr>
+                <td><strong>Universitas</strong></td>
+                <td>Universitas Cokroaminoto Palopo</td>
+            </tr>
+            <tr>
+                <td><strong>Email</strong></td>
+                <td>aulia@email.com</td>
+            </tr>
+            <tr>
+                <td><strong>Alamat</strong></td>
+                <td>Sulawesi Selatan, Kabupaten Luwu</td>
+            </tr>
+        </table>
     </div>
 
-    <h2>Profil Singkat</h2>
+    <!-- TENTANG SAYA -->
+    <h2 id="tentang">👋 Tentang Saya</h2>
+
+    <div class="card">
+        <p>
+            Halo, saya <strong>Aulia Rahmat</strong>.
+            Saya merupakan mahasiswa Program Studi Informatika
+            yang memiliki minat dalam bidang Web Development,
+            UI/UX Design, serta teknologi informasi.
+        </p>
+
+        <br>
+
+        <p>
+            Website ini dibuat sebagai media pembelajaran HTML,
+            CSS, dan JavaScript sekaligus sebagai profil dan
+            portofolio pribadi. Saya terus belajar meningkatkan
+            kemampuan dalam membuat website yang modern,
+            responsif, dan menarik.
+        </p>
+    </div>
+
+    <!-- SKILL -->
+    <h2 id="skill">💻 Skill</h2>
+
+    <div class="card">
+        <p>HTML</p>
+        <div class="progress">
+            <span style="width:95%"></span>
+        </div>
+
+        <p>CSS</p>
+        <div class="progress">
+            <span style="width:90%"></span>
+        </div>
+
+        <p>JavaScript</p>
+        <div class="progress">
+            <span style="width:85%"></span>
+        </div>
+
+        <p>PHP</p>
+        <div class="progress">
+            <span style="width:75%"></span>
+        </div>
+
+        <p>MySQL</p>
+        <div class="progress">
+            <span style="width:80%"></span>
+        </div>
+
+        <p>UI/UX Design</p>
+        <div class="progress">
+            <span style="width:88%"></span>
+        </div>
+    </div>
+
+    <!-- PRESTASI -->
+    <h2 id="prestasi">🏆 Prestasi</h2>
+
+    <div class="card">
+        <ul>
+            <li>🏅 Juara 2 Lomba Desain Website Tingkat Kampus</li>
+            <li>📜 Sertifikat Dicoding Front-End Developer</li>
+            <li>💻 Membuat Website Profil Mahasiswa</li>
+            <li>🌐 Membuat Website Portofolio Pribadi</li>
+            <li>🎓 Mengikuti Seminar Nasional Teknologi Informasi</li>
+            <li>🚀 Belajar Hosting Website menggunakan InfinityFree</li>
+        </ul>
+    </div>
+
+    <!-- TUJUAN WEBSITE -->
+    <h2>🎯 Tujuan Website</h2>
+
+    <div class="card">
+        <p>
+            Website ini dibuat sebagai latihan mata kuliah
+            Administrasi Website. Melalui website ini, saya
+            mempelajari pembuatan halaman web menggunakan HTML,
+            CSS, dan JavaScript serta memahami proses publikasi
+            website agar dapat diakses secara online.
+        </p>
+    </div>
+
+    <!-- KONTAK -->
+    <h2 id="kontak">📞 Kontak</h2>
+
+    <div class="card">
+        <table>
+            <tr>
+                <td><strong>📧 Email</strong></td>
+                <td>aulia@email.com</td>
+            </tr>
+            <tr>
+                <td><strong>📱 WhatsApp</strong></td>
+                <td>0812-3456-7890</td>
+            </tr>
+            <tr>
+                <td><strong>📍 Alamat</strong></td>
+                <td>Makassar, Sulawesi Selatan</td>
+            </tr>
+            <tr>
+                <td><strong>🌐 Website</strong></td>
+                <td>www.auliarahmat.com</td>
+            </tr>
+            <tr>
+                <td><strong>📷 Instagram</strong></td>
+                <td>@auliarahmat</td>
+            </tr>
+            <tr>
+                <td><strong>💼 LinkedIn</strong></td>
+                <td>linkedin.com/in/auliarahmat</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- HOBI -->
+    <h2>🎯 Hobi</h2>
+
+    <div class="card">
+        <ul>
+            <li>💻 Belajar Pemrograman</li>
+            <li>📚 Membaca Buku Teknologi</li>
+            <li>🎵 Mendengarkan Musik</li>
+            <li>🎮 Bermain Game</li>
+            <li>📸 Fotografi</li>
+            <li>✈️ Travelling</li>
+        </ul>
+    </div>
+
+    <!-- PENGALAMAN -->
+    <h2>💼 Pengalaman</h2>
+
+    <div class="card">
+        <ul>
+            <li>Membuat Website Profil Mahasiswa.</li>
+            <li>Membuat Website Portofolio Pribadi.</li>
+            <li>Belajar Hosting Website menggunakan InfinityFree.</li>
+            <li>Membuat sistem informasi sederhana berbasis web.</li>
+            <li>Belajar HTML, CSS, JavaScript, PHP, dan MySQL.</li>
+        </ul>
+    </div>
+
+    <!-- GALERI -->
+    <h2 id="galeri">🖼️ Galeri Proyek</h2>
+
+    <div class="card galeri">
+        <img
+            src="https://placehold.co/400x250/00b4db/ffffff?text=Project+1"
+            alt="Proyek website pertama"
+            loading="lazy">
+
+        <img
+            src="https://placehold.co/400x250/0083b0/ffffff?text=Project+2"
+            alt="Proyek website kedua"
+            loading="lazy">
+
+        <img
+            src="https://placehold.co/400x250/2193b0/ffffff?text=Project+3"
+            alt="Proyek website ketiga"
+            loading="lazy">
+    </div>
+
+    <!-- MOTTO -->
+    <h2>💬 Motto Hidup</h2>
+
+    <div class="card">
+        <p style="text-align:center;font-size:20px;font-weight:bold;">
+            "Terus Belajar, Terus Berkarya,
+            dan Jangan Pernah Menyerah."
+        </p>
+    </div>
+
+</main>
+
+<footer>
     <p>
-      Halo, saya Aulia Rahmat.
-      Saya sedang belajar mempublikasikan website.
+        © 2026 Website Profil Mahasiswa |
+        Dibuat menggunakan HTML, CSS & JavaScript ❤️
     </p>
+</footer>
 
-    <h2>Informasi</h2>
-    <ul>
-      <li>Program Studi: Informatika</li>
-      <li>Mata Kuliah: Administrasi Website</li>
-      <li>Topik: Hosting dan publikasi website</li>
-    </ul>
+<script>
+// ==================================
+// 1. JAM DIGITAL
+// ==================================
 
-    <h2>Tujuan</h2>
-    <p>
-      Halaman ini dibuat sebagai latihan mengunggah HTML
-      ke layanan hosting.
-    </p>
-  </main>
+function tampilJam() {
+    const sekarang = new Date();
 
-  <footer>
-    Website latihan mahasiswa — 2026
-  </footer>
+    const jam = String(sekarang.getHours()).padStart(2, "0");
+    const menit = String(sekarang.getMinutes()).padStart(2, "0");
+    const detik = String(sekarang.getSeconds()).padStart(2, "0");
 
-  <script>
-    const inputFoto = document.getElementById("inputFoto");
-    const previewFoto = document.getElementById("previewFoto");
-    const pesan = document.getElementById("pesan");
+    document.getElementById("jam").textContent =
+        "🕒 " + jam + ":" + menit + ":" + detik;
+}
 
-    // Tampilkan foto yang sudah tersimpan saat halaman dibuka
-    try {
-      const fotoTersimpan = localStorage.getItem("fotoProfilAulia");
+tampilJam();
+setInterval(tampilJam, 1000);
 
-      if (fotoTersimpan) {
+
+// ==================================
+// 2. DARK MODE
+// ==================================
+
+const tombolDark = document.getElementById("darkMode");
+
+tombolDark.addEventListener("click", function () {
+    document.body.classList.toggle("gelap");
+
+    if (document.body.classList.contains("gelap")) {
+        tombolDark.textContent = "☀️ Light Mode";
+    } else {
+        tombolDark.textContent = "🌙 Dark Mode";
+    }
+});
+
+
+// ==================================
+// 3. UPLOAD DAN PREVIEW FOTO PROFIL
+// ==================================
+
+const inputFoto = document.getElementById("inputFoto");
+const previewFoto = document.getElementById("previewFoto");
+const pesan = document.getElementById("pesan");
+const tombolHapusFoto = document.getElementById("hapusFoto");
+
+const kunciFoto = "fotoProfilAulia";
+
+const fotoDefault =
+    "https://placehold.co/300x300/e0f2fe/0891b2?text=Foto+Mahasiswa";
+
+// Memuat foto yang pernah disimpan
+try {
+    const fotoTersimpan = localStorage.getItem(kunciFoto);
+
+    if (fotoTersimpan) {
         previewFoto.src = fotoTersimpan;
-        pesan.textContent = "Foto profil tersimpan otomatis.";
-      }
-    } catch (error) {
-      pesan.textContent = "Penyimpanan foto tidak tersedia di browser.";
+        pesan.textContent = "✅ Foto profil berhasil dimuat.";
+    }
+} catch (error) {
+    pesan.textContent =
+        "Penyimpanan tidak tersedia. Silakan pilih foto.";
+}
+
+// Menampilkan foto yang dipilih
+inputFoto.addEventListener("change", function () {
+    const file = this.files[0];
+
+    if (!file) return;
+
+    // Memastikan file adalah gambar
+    if (!file.type.startsWith("image/")) {
+        pesan.textContent = "❌ File harus berupa gambar.";
+        this.value = "";
+        return;
     }
 
-    // Pilih dan simpan foto baru
-    inputFoto.addEventListener("change", function () {
-      const file = this.files[0];
-
-      if (!file) return;
-
-      if (!file.type.startsWith("image/")) {
-        pesan.textContent = "Silakan pilih file gambar yang valid.";
-        this.value = "";
-        return;
-      }
-
-      // Maksimal 2 MB agar penyimpanan browser tidak cepat penuh
-      if (file.size > 2 * 1024 * 1024) {
+    // Batas ukuran file 2 MB
+    if (file.size > 2 * 1024 * 1024) {
         pesan.textContent =
-          "Ukuran foto terlalu besar. Maksimal 2 MB.";
+            "❌ Ukuran foto maksimal 2 MB. Silakan pilih foto lain.";
         this.value = "";
         return;
-      }
+    }
 
-      const reader = new FileReader();
+    const reader = new FileReader();
 
-      reader.onload = function (event) {
-        const dataFoto = event.target.result;
+    reader.onload = function (event) {
+        const hasilFoto = event.target.result;
 
+        // Preview langsung ditampilkan
+        previewFoto.src = hasilFoto;
+
+        // Foto disimpan agar dapat dimuat kembali
         try {
-          // Simpan foto ke penyimpanan browser
-          localStorage.setItem("fotoProfilAulia", dataFoto);
-
-          // Tampilkan foto setelah berhasil disimpan
-          previewFoto.src = dataFoto;
-          pesan.textContent =
-            "Foto berhasil disimpan! Foto akan tetap ada saat dibuka kembali.";
+            localStorage.setItem(kunciFoto, hasilFoto);
+            pesan.textContent =
+                "✅ Foto berhasil ditampilkan dan disimpan.";
         } catch (error) {
-          pesan.textContent =
-            "Foto gagal disimpan. Coba gunakan gambar yang lebih kecil.";
+            pesan.textContent =
+                "⚠️ Foto berhasil ditampilkan, tetapi tidak dapat disimpan browser.";
         }
-      };
+    };
 
-      reader.onerror = function () {
-        pesan.textContent = "Foto gagal dibaca. Silakan coba lagi.";
-      };
+    reader.onerror = function () {
+        pesan.textContent =
+            "❌ Foto gagal dibaca. Silakan coba kembali.";
+    };
 
-      reader.readAsDataURL(file);
-      this.value = "";
+    reader.readAsDataURL(file);
+});
+
+// Menghapus foto dan mengembalikan gambar default
+tombolHapusFoto.addEventListener("click", function () {
+    try {
+        localStorage.removeItem(kunciFoto);
+    } catch (error) {
+        // Foto default tetap dapat ditampilkan
+    }
+
+    previewFoto.src = fotoDefault;
+    inputFoto.value = "";
+    pesan.textContent = "Foto profil telah dihapus.";
+});
+
+
+// ==================================
+// 4. ANIMASI CARD SAAT DI-SCROLL
+// ==================================
+
+const cards = document.querySelectorAll(".card");
+
+if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1
     });
-  </script>
+
+    cards.forEach(function (card) {
+        card.style.opacity = "0";
+        card.style.transform = "translateY(25px)";
+        card.style.transition = "opacity .7s ease, transform .7s ease";
+        observer.observe(card);
+    });
+} else {
+    cards.forEach(function (card) {
+        card.style.opacity = "1";
+        card.style.transform = "none";
+    });
+}
+
+
+// ==================================
+// 5. SAPAAN BERDASARKAN WAKTU
+// ==================================
+
+const jamSekarang = new Date().getHours();
+let salam = "";
+
+if (jamSekarang < 11) {
+    salam = "🌞 Selamat Pagi";
+} else if (jamSekarang < 15) {
+    salam = "☀️ Selamat Siang";
+} else if (jamSekarang < 18) {
+    salam = "🌇 Selamat Sore";
+} else {
+    salam = "🌙 Selamat Malam";
+}
+
+console.log(
+    salam + "! Selamat datang di Website Profil Mahasiswa."
+);
+</script>
+
 </body>
 </html>

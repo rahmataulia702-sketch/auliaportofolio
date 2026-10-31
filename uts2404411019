@@ -1,0 +1,526 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Website Profil Dosen Universitas Cokroaminoto Palopo">
+    <title>Profil Dosen | Universitas Cokroaminoto Palopo</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #243047;
+            background: #f7f9fc;
+            line-height: 1.7;
+        }
+
+        :root {
+            --primary: #123b70;
+            --secondary: #1c5da8;
+            --accent: #e6ad45;
+            --light: #f7f9fc;
+        }
+
+        header {
+            background: white;
+            padding: 16px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 15px rgba(0,0,0,.06);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            color: var(--primary);
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #34445d;
+            font-size: 13px;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        .hero {
+            min-height: 570px;
+            padding: 75px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            background: linear-gradient(120deg, #102e56, #1c5da8);
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .hero-content small {
+            color: #f5c76d;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 52px);
+            line-height: 1.25;
+            margin: 18px 0;
+        }
+
+        .hero h1 span {
+            color: #f5c76d;
+        }
+
+        .hero p {
+            color: #dce8f7;
+            margin-bottom: 28px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 25px;
+            background: var(--accent);
+            color: #172b45;
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: .3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background: #ffd17b;
+        }
+
+        .profile-image {
+            width: 310px;
+            height: 370px;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 5px solid rgba(255,255,255,.3);
+            flex-shrink: 0;
+            background: #dce8f7;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        section {
+            padding: 75px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title small {
+            color: var(--secondary);
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .section-title h2 {
+            font-size: 30px;
+            color: var(--primary);
+            margin-top: 8px;
+        }
+
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 45px;
+            align-items: center;
+        }
+
+        .about h3 {
+            color: var(--primary);
+            font-size: 25px;
+            margin-bottom: 15px;
+        }
+
+        .about p {
+            color: #64748b;
+            margin-bottom: 15px;
+        }
+
+        .about-card {
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,.05);
+        }
+
+        .about-card h3 {
+            margin-bottom: 15px;
+        }
+
+        .about-card ul {
+            padding-left: 20px;
+            color: #64748b;
+        }
+
+        .academic {
+            background: #edf3fa;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .card {
+            background: white;
+            padding: 28px;
+            border-radius: 13px;
+            box-shadow: 0 8px 25px rgba(0,0,0,.04);
+            transition: .3s;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 30px rgba(0,0,0,.1);
+        }
+
+        .card .icon {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: var(--primary);
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .research-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .research-item {
+            background: white;
+            padding: 23px;
+            border-left: 5px solid var(--accent);
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,.04);
+        }
+
+        .research-item h3 {
+            color: var(--primary);
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+
+        .research-item p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .contact {
+            background: #123b70;
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .contact p {
+            color: #dce8f7;
+            margin-bottom: 25px;
+        }
+
+        footer {
+            padding: 25px 8%;
+            background: #0c2545;
+            color: #cbd5e1;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        @media(max-width: 850px) {
+            header {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+            }
+
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding: 55px 6%;
+            }
+
+            .profile-image {
+                width: 240px;
+                height: 290px;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media(max-width: 550px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 24px;
+            }
+
+            section {
+                padding: 55px 6%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">PROFIL<span>DOSEN.</span></div>
+
+    <nav>
+        <a href="#beranda">Beranda</a>
+        <a href="#tentang">Tentang</a>
+        <a href="#akademik">Akademik</a>
+        <a href="#penelitian">Penelitian</a>
+        <a href="#kontak">Kontak</a>
+    </nav>
+</header>
+
+<section class="hero" id="beranda">
+    <div class="hero-content">
+        <small>UNIVERSITAS COKROAMINOTO PALOPO</small>
+
+        <h1>Selamat Datang di <span>Profil Dosen</span></h1>
+
+        <p>
+            Mengenal lebih dekat profil, perjalanan akademik,
+            bidang keahlian, penelitian, dan kontribusi dosen
+            dalam dunia pendidikan tinggi.
+        </p>
+
+        <a href="#tentang" class="btn">Lihat Profil Saya</a>
+    </div>
+
+    <div class="profile-image">
+        <img
+            src="https://placehold.co/500x600/dae5f2/123b70?text=Foto+Dosen"
+            alt="Foto Profil Dosen">
+    </div>
+</section>
+
+<section id="tentang">
+    <div class="section-title">
+        <small>PROFIL AKADEMIK</small>
+        <h2>Tentang Dosen</h2>
+    </div>
+
+    <div class="about">
+        <div>
+            <h3>Nama Dosen, S.Kom., M.Kom.</h3>
+
+            <p>
+                Saya merupakan tenaga pendidik di Universitas
+                Cokroaminoto Palopo yang memiliki komitmen dalam
+                melaksanakan pendidikan, penelitian, dan pengabdian
+                kepada masyarakat.
+            </p>
+
+            <p>
+                Melalui kegiatan akademik dan pengembangan ilmu
+                pengetahuan, saya berupaya memberikan kontribusi
+                positif bagi mahasiswa dan masyarakat.
+            </p>
+        </div>
+
+        <div class="about-card">
+            <h3>Informasi Pribadi</h3>
+            <ul>
+                <li>Universitas: Universitas Cokroaminoto Palopo</li>
+                <li>Fakultas: [Nama Fakultas]</li>
+                <li>Program Studi: [Nama Program Studi]</li>
+                <li>Jabatan: Dosen</li>
+                <li>Bidang Keahlian: Teknologi Informasi</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="academic" id="akademik">
+    <div class="section-title">
+        <small>KEGIATAN AKADEMIK</small>
+        <h2>Informasi Akademik</h2>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="icon">🎓</div>
+            <h3>Pendidikan</h3>
+            <p>
+                Informasi riwayat pendidikan mulai dari jenjang
+                sarjana hingga pendidikan terakhir.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">📚</div>
+            <h3>Mata Kuliah</h3>
+            <p>
+                Informasi mata kuliah yang diampu dalam kegiatan
+                pembelajaran di perguruan tinggi.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🔬</div>
+            <h3>Penelitian</h3>
+            <p>
+                Kegiatan penelitian dan pengembangan ilmu
+                pengetahuan sesuai bidang keahlian.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">📖</div>
+            <h3>Publikasi</h3>
+            <p>
+                Hasil karya ilmiah yang diterbitkan melalui
+                jurnal, prosiding, dan publikasi lainnya.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🤝</div>
+            <h3>Pengabdian</h3>
+            <p>
+                Kontribusi dalam kegiatan pengabdian kepada
+                masyarakat melalui penerapan ilmu pengetahuan.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🏅</div>
+            <h3>Sertifikasi</h3>
+            <p>
+                Informasi sertifikasi, pelatihan, dan
+                pengembangan kompetensi profesional.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section id="penelitian">
+    <div class="section-title">
+        <small>KARYA ILMIAH</small>
+        <h2>Penelitian dan Publikasi</h2>
+    </div>
+
+    <div class="research-list">
+
+        <div class="research-item">
+            <h3>Penelitian Bidang Teknologi Informasi</h3>
+            <p>
+                Informasi penelitian mengenai pengembangan
+                teknologi informasi dan sistem berbasis web.
+            </p>
+        </div>
+
+        <div class="research-item">
+            <h3>Pengembangan Sistem Informasi Akademik</h3>
+            <p>
+                Kajian mengenai pemanfaatan sistem informasi
+                untuk mendukung kegiatan akademik.
+            </p>
+        </div>
+
+        <div class="research-item">
+            <h3>Publikasi Karya Ilmiah</h3>
+            <p>
+                Daftar publikasi ilmiah dan hasil penelitian
+                yang telah dilakukan.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section class="contact" id="kontak">
+    <h2>Hubungi Saya</h2>
+
+    <p>
+        Untuk informasi lebih lanjut mengenai kegiatan
+        akademik dan kerja sama, silakan menghubungi saya.
+    </p>
+
+    <a href="mailto:email@example.com" class="btn">
+        Kirim Email
+    </a>
+</section>
+
+<footer>
+    <p>
+        &copy; 2026 Profil Dosen Universitas Cokroaminoto Palopo.
+        Semua Hak Dilindungi.
+    </p>
+</footer>
+
+</body>
+</html>

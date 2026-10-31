@@ -4,775 +4,127 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Website Profil Mahasiswa - Aulia Rahmat</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+<title>Desa Digital Sukamaju</title>
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    scroll-behavior: smooth;
-}
-
-body {
-    background: linear-gradient(-45deg, #00b4db, #0083b0, #6dd5ed, #2193b0);
-    background-size: 400% 400%;
-    animation: bg 12s ease infinite;
-    color: white;
-    overflow-x: hidden;
-    transition: background .4s, color .4s;
-}
-
-@keyframes bg {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-html {
-    scroll-padding-top: 90px;
-}
-
-nav {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 25px;
-    padding: 18px;
-    background: rgba(255,255,255,.15);
-    backdrop-filter: blur(15px);
-    box-shadow: 0 5px 20px rgba(0,0,0,.2);
-}
-
-nav a {
-    text-decoration: none;
-    color: white;
-    font-weight: 600;
-    transition: .3s;
-}
-
-nav a:hover {
-    color: #00ffff;
-    transform: translateY(-2px);
-}
-
-header {
-    text-align: center;
-    padding: 50px 20px;
-    background: rgba(255,255,255,.15);
-    backdrop-filter: blur(20px);
-    box-shadow: 0 5px 20px rgba(0,0,0,.2);
-}
-
-header h1 {
-    font-size: 38px;
-    margin-bottom: 10px;
-}
-
-header p {
-    font-size: 17px;
-}
-
-#jam {
-    margin-top: 15px;
-    font-size: 20px;
-    font-weight: bold;
-    color: #00ffff;
-}
-
-main {
-    width: 90%;
-    max-width: 1000px;
-    margin: 40px auto;
-    padding: 35px;
-    background: rgba(255,255,255,.15);
-    backdrop-filter: blur(20px);
-    border-radius: 25px;
-    box-shadow: 0 10px 40px rgba(0,0,0,.25);
-    animation: muncul 1s;
-}
-
-@keyframes muncul {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.foto-profil {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.foto-profil img {
-    width: 180px;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 5px solid white;
-    box-shadow: 0 0 35px cyan;
-    transition: .4s;
-}
-
-.foto-profil img:hover {
-    transform: scale(1.06);
-    box-shadow: 0 0 50px cyan;
-}
-
-#inputFoto {
-    display: none;
-}
-
-.tombol {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 28px;
-    background: linear-gradient(45deg, #00c6ff, #0072ff);
-    border: none;
-    border-radius: 30px;
-    color: white;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-    transition: .3s;
-}
-
-.tombol:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0,0,0,.3);
-}
-
-#pesan {
-    margin-top: 15px;
-    font-size: 13px;
-}
-
-h2 {
-    margin-top: 35px;
-    margin-bottom: 15px;
-    padding-left: 12px;
-    border-left: 5px solid cyan;
-    font-size: 22px;
-}
-
-.card {
-    background: rgba(255,255,255,.12);
-    padding: 20px;
-    border-radius: 18px;
-    margin-top: 15px;
-    transition: .4s;
-}
-
-.card:hover {
-    background: rgba(255,255,255,.20);
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    overflow-wrap: anywhere;
-}
-
-table td {
-    padding: 12px;
-    border-bottom: 1px solid rgba(255,255,255,.25);
-    text-align: left;
-    vertical-align: top;
-}
-
-ul {
-    padding-left: 25px;
-}
-
-li {
-    margin: 10px 0;
-}
-
-.progress {
-    width: 100%;
-    height: 12px;
-    background: rgba(255,255,255,.35);
-    border-radius: 30px;
-    margin: 8px 0 20px;
-    overflow: hidden;
-}
-
-.progress span {
-    display: block;
-    height: 100%;
-    border-radius: 30px;
-    background: linear-gradient(90deg, #00f260, #0575e6);
-}
-
-.galeri {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 15px;
-}
-
-.galeri img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 15px;
-    transition: .4s;
-}
-
-.galeri img:hover {
-    transform: scale(1.04);
-    box-shadow: 0 10px 30px rgba(0,0,0,.3);
-}
-
-footer {
-    text-align: center;
-    padding: 25px;
-    margin-top: 40px;
-    background: rgba(255,255,255,.15);
-}
-
-#darkMode {
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    font-weight: bold;
-    background: white;
-    color: #333;
-    z-index: 2000;
-    box-shadow: 0 3px 12px rgba(0,0,0,.2);
-}
-
-body.gelap {
-    background: #101820;
-    animation: none;
-    color: #f1f5f9;
-}
-
-.gelap nav,
-.gelap header,
-.gelap main,
-.gelap footer {
-    background: rgba(0,0,0,.4);
-}
-
-.gelap .card {
-    background: rgba(255,255,255,.07);
-}
-
-.gelap .card:hover {
-    background: rgba(255,255,255,.12);
-}
-
-@media (max-width: 768px) {
-    nav {
-        gap: 12px;
-        padding: 65px 12px 15px;
-    }
-
-    nav a {
-        font-size: 13px;
-    }
-
-    header h1 {
-        font-size: 27px;
-    }
-
-    header p {
-        font-size: 14px;
-    }
-
-    main {
-        width: 94%;
-        padding: 20px;
-        margin: 25px auto;
-    }
-
-    .foto-profil img {
-        width: 145px;
-        height: 145px;
-    }
-
-    h2 {
-        font-size: 19px;
-    }
-
-    table td {
-        padding: 9px 6px;
-        font-size: 13px;
-    }
-
-    #darkMode {
-        top: 10px;
-        right: 10px;
-    }
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;color:#26392d;line-height:1.7}
+header{background:#14532d;color:white;padding:18px 7%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.logo{font-size:22px;font-weight:bold}
+nav a{color:white;text-decoration:none;margin-left:20px;font-size:14px}
+.hero{background:linear-gradient(#123b29b8,#123b29b8),url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600') center/cover;min-height:500px;display:flex;align-items:center;color:white;padding:60px 9%}
+.hero div{max-width:650px}
+.hero h1{font-size:48px;line-height:1.2;margin:15px 0}
+.hero p{font-size:16px}
+.btn{display:inline-block;background:#eabf52;color:#183b26;text-decoration:none;padding:12px 25px;border-radius:5px;margin-top:25px;font-weight:bold}
+section{padding:75px 8%}
+.heading{text-align:center;margin-bottom:35px}
+.heading h2{font-size:30px;color:#14532d}
+.heading p{color:#718078;font-size:14px}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.about img{width:100%;height:320px;object-fit:cover;border-radius:12px}
+.about p{color:#647168}
+.stats{background:#f0f7f1}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.stat,.card,.service{background:white;border-radius:10px;padding:25px;box-shadow:0 5px 20px #0000000b}
+.stat{text-align:center}
+.stat h3{font-size:30px;color:#168044}
+.card{padding:0;overflow:hidden}
+.card img{width:100%;height:190px;object-fit:cover}
+.card div{padding:20px}
+.card h3,.service h3{color:#14532d;margin-bottom:8px}
+.card p,.service p{font-size:13px;color:#718078}
+.service{border-bottom:3px solid #168044}
+.contact{background:#14532d;color:white;text-align:center}
+.contact h2{font-size:30px}
+.contact p{margin-top:12px;color:#e0eee3}
+footer{background:#0c2e1b;color:white;text-align:center;padding:20px;font-size:13px}
+@media(max-width:750px){
+header{flex-direction:column;gap:12px}
+nav{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+nav a{margin:0;font-size:12px}
+.hero h1{font-size:34px}
+.about{grid-template-columns:1fr}
+.grid{grid-template-columns:1fr}
+section{padding:55px 6%}
 }
 </style>
 </head>
 <body>
-
-<button id="darkMode" type="button">🌙 Dark Mode</button>
-
-<nav>
-    <a href="#profil">Profil</a>
-    <a href="#biodata">Biodata</a>
-    <a href="#tentang">Tentang Saya</a>
-    <a href="#skill">Skill</a>
-    <a href="#prestasi">Prestasi</a>
-    <a href="#kontak">Kontak</a>
-    <a href="#galeri">Galeri</a>
-</nav>
-
 <header>
-    <h1>🎓 Website Profil Mahasiswa</h1>
-    <p>Praktik Administrasi Website</p>
+<div class="logo">DESA SUKAMAJU</div>
+<nav>
+<a href="#beranda">Beranda</a>
+<a href="#profil">Profil</a>
+<a href="#berita">Berita</a>
+<a href="#potensi">Potensi</a>
+<a href="#layanan">Layanan</a>
+<a href="#kontak">Kontak</a>
+</nav>
 </header>
 
-<main>
-
-    <!-- PROFIL DAN UPLOAD FOTO -->
-    <section class="foto-profil" id="profil">
-
-        <img
-            id="previewFoto"
-            src="https://placehold.co/300x300/e0f2fe/0891b2?text=Foto+Mahasiswa"
-            alt="Foto Profil Mahasiswa">
-
-        <br>
-
-        <input
-            type="file"
-            id="inputFoto"
-            accept="image/*">
-
-        <label for="inputFoto" class="tombol">
-            📷 Pilih Foto
-        </label>
-
-        <button type="button" id="hapusFoto" class="tombol">
-            🗑️ Hapus Foto
-        </button>
-
-        <p id="pesan" role="status" aria-live="polite">
-            Silakan pilih foto profil Anda.
-        </p>
-
-        <h2>Aulia Rahmat</h2>
-        <p>Mahasiswa Program Studi Informatika</p>
-
-    </section>
-
-    <!-- BIODATA -->
-    <h2 id="biodata">📋 Biodata Mahasiswa</h2>
-
-    <div class="card">
-        <table>
-            <tr>
-                <td><strong>Nama</strong></td>
-                <td>Aulia Rahmat</td>
-            </tr>
-            <tr>
-                <td><strong>NIM</strong></td>
-                <td>2404411019</td>
-            </tr>
-            <tr>
-                <td><strong>Program Studi</strong></td>
-                <td>Informatika</td>
-            </tr>
-            <tr>
-                <td><strong>Fakultas</strong></td>
-                <td>Teknik Komputer</td>
-            </tr>
-            <tr>
-                <td><strong>Universitas</strong></td>
-                <td>Universitas Cokroaminoto Palopo</td>
-            </tr>
-            <tr>
-                <td><strong>Email</strong></td>
-                <td>aulia@email.com</td>
-            </tr>
-            <tr>
-                <td><strong>Alamat</strong></td>
-                <td>Sulawesi Selatan, Kabupaten Luwu</td>
-            </tr>
-        </table>
-    </div>
-
-    <!-- TENTANG SAYA -->
-    <h2 id="tentang">👋 Tentang Saya</h2>
-
-    <div class="card">
-        <p>
-            Halo, saya <strong>Aulia Rahmat</strong>.
-            Saya merupakan mahasiswa Program Studi Informatika
-            yang memiliki minat dalam bidang Web Development,
-            UI/UX Design, serta teknologi informasi.
-        </p>
-
-        <br>
-
-        <p>
-            Website ini dibuat sebagai media pembelajaran HTML,
-            CSS, dan JavaScript sekaligus sebagai profil dan
-            portofolio pribadi. Saya terus belajar meningkatkan
-            kemampuan dalam membuat website yang modern,
-            responsif, dan menarik.
-        </p>
-    </div>
-
-    <!-- SKILL -->
-    <h2 id="skill">💻 Skill</h2>
-
-    <div class="card">
-        <p>HTML</p>
-        <div class="progress">
-            <span style="width:95%"></span>
-        </div>
-
-        <p>CSS</p>
-        <div class="progress">
-            <span style="width:90%"></span>
-        </div>
-
-        <p>JavaScript</p>
-        <div class="progress">
-            <span style="width:85%"></span>
-        </div>
-
-        <p>PHP</p>
-        <div class="progress">
-            <span style="width:75%"></span>
-        </div>
-
-        <p>MySQL</p>
-        <div class="progress">
-            <span style="width:80%"></span>
-        </div>
-
-        <p>UI/UX Design</p>
-        <div class="progress">
-            <span style="width:88%"></span>
-        </div>
-    </div>
-
-    <!-- PRESTASI -->
-    <h2 id="prestasi">🏆 Prestasi</h2>
-
-    <div class="card">
-        <ul>
-            <li>🏅 Juara 2 Lomba Desain Website Tingkat Kampus</li>
-            <li>📜 Sertifikat Dicoding Front-End Developer</li>
-            <li>💻 Membuat Website Profil Mahasiswa</li>
-            <li>🌐 Membuat Website Portofolio Pribadi</li>
-            <li>🎓 Mengikuti Seminar Nasional Teknologi Informasi</li>
-            <li>🚀 Belajar Hosting Website menggunakan InfinityFree</li>
-        </ul>
-    </div>
-
-    <!-- TUJUAN WEBSITE -->
-    <h2>🎯 Tujuan Website</h2>
-
-    <div class="card">
-        <p>
-            Website ini dibuat sebagai latihan mata kuliah
-            Administrasi Website. Melalui website ini, saya
-            mempelajari pembuatan halaman web menggunakan HTML,
-            CSS, dan JavaScript serta memahami proses publikasi
-            website agar dapat diakses secara online.
-        </p>
-    </div>
-
-    <!-- KONTAK -->
-    <h2 id="kontak">📞 Kontak</h2>
-
-    <div class="card">
-        <table>
-            <tr>
-                <td><strong>📧 Email</strong></td>
-                <td>aulia@email.com</td>
-            </tr>
-            <tr>
-                <td><strong>📱 WhatsApp</strong></td>
-                <td>0812-3456-7890</td>
-            </tr>
-            <tr>
-                <td><strong>📍 Alamat</strong></td>
-                <td>Makassar, Sulawesi Selatan</td>
-            </tr>
-            <tr>
-                <td><strong>🌐 Website</strong></td>
-                <td>www.auliarahmat.com</td>
-            </tr>
-            <tr>
-                <td><strong>📷 Instagram</strong></td>
-                <td>@auliarahmat</td>
-            </tr>
-            <tr>
-                <td><strong>💼 LinkedIn</strong></td>
-                <td>linkedin.com/in/auliarahmat</td>
-            </tr>
-        </table>
-    </div>
-
-    <!-- HOBI -->
-    <h2>🎯 Hobi</h2>
-
-    <div class="card">
-        <ul>
-            <li>💻 Belajar Pemrograman</li>
-            <li>📚 Membaca Buku Teknologi</li>
-            <li>🎵 Mendengarkan Musik</li>
-            <li>🎮 Bermain Game</li>
-            <li>📸 Fotografi</li>
-            <li>✈️ Travelling</li>
-        </ul>
-    </div>
-
-    <!-- PENGALAMAN -->
-    <h2>💼 Pengalaman</h2>
-
-    <div class="card">
-        <ul>
-            <li>Membuat Website Profil Mahasiswa.</li>
-            <li>Membuat Website Portofolio Pribadi.</li>
-            <li>Belajar Hosting Website menggunakan InfinityFree.</li>
-            <li>Membuat sistem informasi sederhana berbasis web.</li>
-            <li>Belajar HTML, CSS, JavaScript, PHP, dan MySQL.</li>
-        </ul>
-    </div>
-
-    <!-- GALERI -->
-    <h2 id="galeri">🖼️ Galeri Proyek</h2>
-
-    <div class="card galeri">
-        <img
-            src="https://placehold.co/400x250/00b4db/ffffff?text=Project+1"
-            alt="Proyek website pertama"
-            loading="lazy">
-
-        <img
-            src="https://placehold.co/400x250/0083b0/ffffff?text=Project+2"
-            alt="Proyek website kedua"
-            loading="lazy">
-
-        <img
-            src="https://placehold.co/400x250/2193b0/ffffff?text=Project+3"
-            alt="Proyek website ketiga"
-            loading="lazy">
-    </div>
-
-    <!-- MOTTO -->
-    <h2>💬 Motto Hidup</h2>
-
-    <div class="card">
-        <p style="text-align:center;font-size:20px;font-weight:bold;">
-            "Terus Belajar, Terus Berkarya,
-            dan Jangan Pernah Menyerah."
-        </p>
-    </div>
-
-</main>
-
-<footer>
-    <p>
-        © 2026 Website Profil Mahasiswa |
-        Dibuat menggunakan HTML, CSS & JavaScript ❤️
-    </p>
-</footer>
-
-<script>
-// ==================================
-// 1. JAM DIGITAL
-// ==================================
-
-function tampilJam() {
-    const sekarang = new Date();
-
-    const jam = String(sekarang.getHours()).padStart(2, "0");
-    const menit = String(sekarang.getMinutes()).padStart(2, "0");
-    const detik = String(sekarang.getSeconds()).padStart(2, "0");
-
-    document.getElementById("jam").textContent =
-        "🕒 " + jam + ":" + menit + ":" + detik;
-}
-
-tampilJam();
-setInterval(tampilJam, 1000);
-
-
-// ==================================
-// 2. DARK MODE
-// ==================================
-
-const tombolDark = document.getElementById("darkMode");
-
-tombolDark.addEventListener("click", function () {
-    document.body.classList.toggle("gelap");
-
-    if (document.body.classList.contains("gelap")) {
-        tombolDark.textContent = "☀️ Light Mode";
-    } else {
-        tombolDark.textContent = "🌙 Dark Mode";
-    }
-});
-
-
-// ==================================
-// 3. UPLOAD DAN PREVIEW FOTO PROFIL
-// ==================================
-
-const inputFoto = document.getElementById("inputFoto");
-const previewFoto = document.getElementById("previewFoto");
-const pesan = document.getElementById("pesan");
-const tombolHapusFoto = document.getElementById("hapusFoto");
-
-const kunciFoto = "fotoProfilAulia";
-
-const fotoDefault =
-    "https://placehold.co/300x300/e0f2fe/0891b2?text=Foto+Mahasiswa";
-
-// Memuat foto yang pernah disimpan
-try {
-    const fotoTersimpan = localStorage.getItem(kunciFoto);
-
-    if (fotoTersimpan) {
-        previewFoto.src = fotoTersimpan;
-        pesan.textContent = "✅ Foto profil berhasil dimuat.";
-    }
-} catch (error) {
-    pesan.textContent =
-        "Penyimpanan tidak tersedia. Silakan pilih foto.";
-}
-
-// Menampilkan foto yang dipilih
-inputFoto.addEventListener("change", function () {
-    const file = this.files[0];
-
-    if (!file) return;
-
-    // Memastikan file adalah gambar
-    if (!file.type.startsWith("image/")) {
-        pesan.textContent = "❌ File harus berupa gambar.";
-        this.value = "";
-        return;
-    }
-
-    // Batas ukuran file 2 MB
-    if (file.size > 2 * 1024 * 1024) {
-        pesan.textContent =
-            "❌ Ukuran foto maksimal 2 MB. Silakan pilih foto lain.";
-        this.value = "";
-        return;
-    }
-
-    const reader = new FileReader();
-
-    reader.onload = function (event) {
-        const hasilFoto = event.target.result;
-
-        // Preview langsung ditampilkan
-        previewFoto.src = hasilFoto;
-
-        // Foto disimpan agar dapat dimuat kembali
-        try {
-            localStorage.setItem(kunciFoto, hasilFoto);
-            pesan.textContent =
-                "✅ Foto berhasil ditampilkan dan disimpan.";
-        } catch (error) {
-            pesan.textContent =
-                "⚠️ Foto berhasil ditampilkan, tetapi tidak dapat disimpan browser.";
-        }
-    };
-
-    reader.onerror = function () {
-        pesan.textContent =
-            "❌ Foto gagal dibaca. Silakan coba kembali.";
-    };
-
-    reader.readAsDataURL(file);
-});
-
-// Menghapus foto dan mengembalikan gambar default
-tombolHapusFoto.addEventListener("click", function () {
-    try {
-        localStorage.removeItem(kunciFoto);
-    } catch (error) {
-        // Foto default tetap dapat ditampilkan
-    }
-
-    previewFoto.src = fotoDefault;
-    inputFoto.value = "";
-    pesan.textContent = "Foto profil telah dihapus.";
-});
-
-
-// ==================================
-// 4. ANIMASI CARD SAAT DI-SCROLL
-// ==================================
-
-const cards = document.querySelectorAll(".card");
-
-if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = "1";
-                entry.target.style.transform = "translateY(0)";
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.1
-    });
-
-    cards.forEach(function (card) {
-        card.style.opacity = "0";
-        card.style.transform = "translateY(25px)";
-        card.style.transition = "opacity .7s ease, transform .7s ease";
-        observer.observe(card);
-    });
-} else {
-    cards.forEach(function (card) {
-        card.style.opacity = "1";
-        card.style.transform = "none";
-    });
-}
-
-
-// ==================================
-// 5. SAPAAN BERDASARKAN WAKTU
-// ==================================
-
-const jamSekarang = new Date().getHours();
-let salam = "";
-
-if (jamSekarang < 11) {
-    salam = "🌞 Selamat Pagi";
-} else if (jamSekarang < 15) {
-    salam = "☀️ Selamat Siang";
-} else if (jamSekarang < 18) {
-    salam = "🌇 Selamat Sore";
-} else {
-    salam = "🌙 Selamat Malam";
-}
-
-console.log(
-    salam + "! Selamat datang di Website Profil Mahasiswa."
-);
-</script>
-
+<div class="hero" id="beranda">
+<div>
+<p>SELAMAT DATANG DI WEBSITE RESMI</p>
+<h1>Membangun Desa, Memajukan Masa Depan</h1>
+<p>Portal informasi dan pelayanan digital Desa Sukamaju untuk masyarakat yang lebih maju, transparan, dan sejahtera.</p>
+<a class="btn" href="#profil">Jelajahi Desa →</a>
+</div>
+</div>
+
+<section id="profil">
+<div class="about">
+<img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=900" alt="Pemandangan pedesaan">
+<div>
+<p style="color:#168044;font-weight:bold">TENTANG KAMI</p>
+<h2 style="font-size:30px;color:#14532d">Mengenal Desa Sukamaju</h2>
+<p>Desa Sukamaju merupakan desa yang menjunjung tinggi nilai kebersamaan, gotong royong, dan pembangunan berkelanjutan. Kami berkomitmen menghadirkan pelayanan yang mudah diakses serta informasi yang transparan melalui teknologi digital.</p>
+<a class="btn" href="#kontak">Hubungi Kami</a>
+</div>
+</div>
+</section>
+
+<section class="stats">
+<div class="heading"><h2>Desa Sukamaju dalam Angka</h2><p>Data ilustrasi untuk tampilan website.</p></div>
+<div class="grid">
+<div class="stat"><h3>2.450</h3><p>Jumlah Penduduk</p></div>
+<div class="stat"><h3>680</h3><p>Kepala Keluarga</p></div>
+<div class="stat"><h3>5</h3><p>Dusun</p></div>
+</div>
+</section>
+
+<section id="berita">
+<div class="heading"><h2>Berita dan Kegiatan</h2><p>Informasi terbaru seputar kegiatan desa.</p></div>
+<div class="grid">
+<div class="card"><img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=700" alt="Gotong royong"><div><h3>Gotong Royong Warga</h3><p>Kegiatan bersama masyarakat untuk menjaga kebersihan dan kenyamanan lingkungan desa.</p></div></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=700" alt="Kegiatan warga"><div><h3>Kegiatan Masyarakat</h3><p>Membangun kebersamaan dan mempererat hubungan antarwarga.</p></div></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=700" alt="Pelayanan"><div><h3>Peningkatan Pelayanan</h3><p>Upaya meningkatkan kualitas pelayanan administrasi kepada masyarakat.</p></div></div>
+</div>
+</section>
+
+<section class="stats" id="potensi">
+<div class="heading"><h2>Potensi Unggulan Desa</h2><p>Potensi lokal untuk mendukung ekonomi masyarakat.</p></div>
+<div class="grid">
+<div class="card"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=700" alt="Pertanian"><div><h3>Pertanian</h3><p>Pengembangan hasil pertanian sebagai sumber ekonomi warga.</p></div></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=700" alt="UMKM"><div><h3>UMKM Lokal</h3><p>Mendukung produk usaha masyarakat agar semakin dikenal.</p></div></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=700" alt="Wisata"><div><h3>Wisata Desa</h3><p>Mengembangkan keindahan alam sebagai potensi wisata.</p></div></div>
+</div>
+</section>
+
+<section id="layanan">
+<div class="heading"><h2>Layanan Masyarakat</h2><p>Informasi layanan administrasi Desa Sukamaju.</p></div>
+<div class="grid">
+<div class="service"><h3>📄 Surat Pengantar</h3><p>Informasi persyaratan pengurusan surat pengantar.</p></div>
+<div class="service"><h3>👨‍👩‍👧 Administrasi Penduduk</h3><p>Informasi administrasi kependudukan masyarakat.</p></div>
+<div class="service"><h3>🏛️ Informasi Pemerintahan</h3><p>Informasi kegiatan dan pemerintahan desa.</p></div>
+</div>
+</section>
+
+<section class="contact" id="kontak">
+<h2>Hubungi Pemerintah Desa</h2>
+<p>Desa Digital Sukamaju<br>Alamat: Jl. Desa Sukamaju, Kecamatan Sukamaju<br>Email: desasukamaju@example.com<br>Telepon: 08XX-XXXX-XXXX</p>
+<a class="btn" href="mailto:desasukamaju@example.com">Kirim Email</a>
+</section>
+
+<footer>© 2026 Desa Digital Sukamaju. Seluruh hak cipta dilindungi.</footer>
 </body>
 </html>
